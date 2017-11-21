@@ -111,7 +111,9 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log(`Express running → PORT 3000`);
+});
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
