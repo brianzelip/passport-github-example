@@ -5,10 +5,9 @@ const userController = require('../controllers/userController');
 const { ensureAuthentication } = require('../handlers/authHandlers');
 
 router.get('/', userController.getIndex);
-
 router.get('/login', userController.getLogin);
-
 router.get('/account', ensureAuthentication, userController.getAccount);
+router.get('/logout', userController.logout);
 
 // GET /auth/github
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -36,7 +35,5 @@ router.get(
     res.redirect('/');
   }
 );
-
-router.get('/logout', userController.logout);
 
 module.exports = router;
