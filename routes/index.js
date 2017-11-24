@@ -1,18 +1,14 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
+const userController = require('../controllers/userController');
+const { ensureAuthentication } = require('../handlers/authHandlers');
 
-router.get('/', function(req, res) {
-  res.render('index', { user: req.user });
-});
+router.get('/', userController.getIndex);
 
-router.get('/account', ensureAuthenticated, function(req, res) {
-  res.render('account', { user: req.user });
-});
+router.get('/login', userController.getLogin);
 
-router.get('/login', function(req, res) {
-  res.render('login', { user: req.user });
-});
+router.get('/account', ensureAuthentication, userController.getAccount);
 
 // GET /auth/github
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -41,21 +37,6 @@ router.get(
   }
 );
 
-router.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
-});
-
-// Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
+router.get('/logout', userController.logout);
 
 module.exports = router;
