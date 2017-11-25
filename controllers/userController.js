@@ -2,6 +2,10 @@ exports.getIndex = (req, res) => {
   res.render('index', { user: req.user });
 };
 
+exports.redirectIndex = (req, res) => {
+  res.redirect('/');
+};
+
 exports.getAccount = (req, res) => {
   res.render('account', { user: req.user });
 };
