@@ -19,6 +19,6 @@ exports.logout = (req, res) => {
   res.redirect('/');
 };
 
-exports.getCallbackShowCode = (req, res) => {
+exports.getAuthCallback = (req, res) => {
   res.json(req.query);
 };

@@ -34,7 +34,7 @@ router.get(
 router.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
-  userController.getCallbackShowCode
+  userController.getAuthCallback
 );
 
 module.exports = router;
