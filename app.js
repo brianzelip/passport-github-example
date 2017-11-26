@@ -5,6 +5,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 // var methodOverride = require('method-override');
 var GitHubStrategy = require('passport-github2').Strategy;
+const helpers = require('./helpers');
 
 require('dotenv').config({ path: 'variables.env' });
 
@@ -67,6 +68,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
+
+// pass variables to all views and requests
+app.use((req, res, next) => {
+  res.locals.h = helpers;
+  res.locals.user = req.user || null;
+  // res.locals.flashes = req.flash();
+  // res.locals.currentPath = req.path;
+  next();
+});
 
 app.use('/', routes);
 
