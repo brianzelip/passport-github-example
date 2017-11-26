@@ -16,7 +16,7 @@ router.get('/logout', userController.logout);
 //   back to this application at /auth/github/callback
 router.get(
   '/auth/github',
-  passport.authenticate('github', { scope: ['user:email'] })
+  passport.authenticate('github', { scope: ['repo', 'admin:org'] })
 );
 
 // GET /auth/github/callback
