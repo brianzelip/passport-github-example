@@ -20,7 +20,7 @@ router.get(
     'github',
     {
       scope: ['repo', 'admin:org'],
-      state: 'hello i love you'
+      state: process.env.GITHUB_CLIENT_STATE
     },
     null
   )
