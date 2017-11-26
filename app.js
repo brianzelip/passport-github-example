@@ -9,6 +9,7 @@ const helpers = require('./helpers');
 
 require('dotenv').config({ path: 'variables.env' });
 
+const PORT = process.env.PORT;
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
@@ -36,7 +37,7 @@ passport.use(
     {
       clientID: GITHUB_CLIENT_ID,
       clientSecret: GITHUB_CLIENT_SECRET,
-      callbackURL: 'http://127.0.0.1:3000/auth/github/callback'
+      callbackURL: `http://localhost:${PORT}/auth/github/callback`
     },
     function(accessToken, refreshToken, profile, done) {
       // asynchronous verification, for effect...
@@ -80,6 +81,8 @@ app.use((req, res, next) => {
 
 app.use('/', routes);
 
-app.listen(3000, () => {
-  console.log(`Express running → PORT 3000`);
+const server = app.listen(PORT, () => {
+  console.log(`Express server running → PORT ${server.address().port}`);
 });
+// leaving in the `${server.address().port}` to show my future self that
+// this recursive variable definition is possible
