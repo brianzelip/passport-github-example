@@ -16,7 +16,14 @@ router.get('/logout', userController.logout);
 //   back to this application at /auth/github/callback
 router.get(
   '/auth/github',
-  passport.authenticate('github', { scope: ['repo', 'admin:org'] })
+  passport.authenticate(
+    'github',
+    {
+      scope: ['repo', 'admin:org'],
+      state: 'hello i love you'
+    },
+    null
+  )
 );
 
 // GET /auth/github/callback
@@ -27,7 +34,7 @@ router.get(
 router.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
-  userController.redirectIndex
+  userController.getCallbackShowCode
 );
 
 module.exports = router;
