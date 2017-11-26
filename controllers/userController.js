@@ -1,5 +1,5 @@
 exports.getIndex = (req, res) => {
-  res.render('index', { user: req.user });
+  res.render('index');
 };
 
 exports.redirectIndex = (req, res) => {
@@ -7,11 +7,11 @@ exports.redirectIndex = (req, res) => {
 };
 
 exports.getAccount = (req, res) => {
-  res.render('account', { user: req.user });
+  res.render('account');
 };
 
 exports.getLogin = (req, res) => {
-  res.render('login', { user: req.user });
+  res.render('login');
 };
 
 exports.logout = (req, res) => {
