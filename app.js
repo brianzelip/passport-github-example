@@ -1,16 +1,16 @@
-var express = require('express');
-var passport = require('passport');
-var util = require('util');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-// var methodOverride = require('method-override');
-var GitHubStrategy = require('passport-github2').Strategy;
+const express = require('express');
+const passport = require('passport');
+const util = require('util');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+// const methodOverride = require('method-override');
+const GitHubStrategy = require('passport-github2').Strategy;
 const helpers = require('./helpers');
 
 require('dotenv').config({ path: 'variables.env' });
 
-var GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
-var GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -51,7 +51,7 @@ passport.use(
   )
 );
 
-var app = express();
+const app = express();
 const routes = require('./routes/index');
 
 // configure Express
